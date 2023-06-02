@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Wahid\\OneDrive\\CWC\\DS\\Code\\LinkedList\\LinkedList.csproj",
+      "projectUniqueName": "C:\\Users\\Wahid\\OneDrive\\CWC\\DS\\Code\\Linked List\\LinkedList\\LinkedList.csproj",
       "projectName": "LinkedList",
-      "projectPath": "C:\\Users\\Wahid\\OneDrive\\CWC\\DS\\Code\\LinkedList\\LinkedList.csproj",
+      "projectPath": "C:\\Users\\Wahid\\OneDrive\\CWC\\DS\\Code\\Linked List\\LinkedList\\LinkedList.csproj",
       "packagesPath": "C:\\Users\\Wahid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Wahid\\OneDrive\\CWC\\DS\\Code\\LinkedList\\obj\\",
+      "outputPath": "C:\\Users\\Wahid\\OneDrive\\CWC\\DS\\Code\\Linked List\\LinkedList\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Wahid\\AppData\\Roaming\\NuGet\\NuGet.Config",

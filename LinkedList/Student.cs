@@ -8,9 +8,11 @@ namespace LinkedList
 {
     public class Student
     {
-        private int id;
-        private string name;
-        private int age;
+        private int id; // 4 bytes
+        private string name; // 12 bytes 
+        private int age; // 4
+        double GPA; // 8
+        char letterGrade; // 2
 
         public Student()
         {

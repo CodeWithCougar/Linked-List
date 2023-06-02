@@ -6,8 +6,13 @@ namespace LinkedList
     {
         static void Main(string[] args)
         {
-            Student student1 = new Student();
-            Student student2 = student1;
+            // Linked List Data Structure.
+            MyLinkedList list= new MyLinkedList();
+            list.inserAtEnd(3);
+            list.inserAtEnd(8);
+            list.inserAtEnd(15);
+            list.inserAtEnd(30);
+            list.print();
         }
     }
 }
