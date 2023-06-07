@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace LinkedList
@@ -10,16 +11,19 @@ namespace LinkedList
             // Linked List Data Structure.
             MyLinkedList list= new MyLinkedList();
             list.insertAtEnd(10);
-            list.insertAtEnd(20);
-            list.insertAtEnd(30);
-            list.insertAtEnd(40);
-            list.insertAtEnd(50);
-            list.insertAtEnd(60);
-            list.insertAtEnd(70);
-            list.insertAtEnd(80);
-            list.insertAtEnd(90);
-            list.insertAtRandomPos(300);
-            
+            list.insertAtEnd(100);
+            list.insertAtEnd(100);
+            list.insertAtEnd(100);
+            list.insertAtEnd(1);
+            list.insertAtEnd(2);
+            list.insertAtEnd(3);
+            list.insertAtEnd(4);
+            list.insertAtEnd(5);
+            list.insertAtEnd(6);
+            list.insertAtPos(333, 3);
+
+            list.deleteDuplicates();
+            //list.DeleteByCondition();
 
 
             list.print();
