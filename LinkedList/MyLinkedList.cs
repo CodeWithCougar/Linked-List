@@ -50,7 +50,7 @@ namespace LinkedList
             // Create a new node with the given data.
             Node newNode = new Node(data); 
 
-            // Iterate through the linked list while the current
+            // Iterate through the linked list while the temp
             // node isn't null and doesn't match the "target" value.
             Node temp = head;
             while (temp != null && temp.Data != target)
@@ -62,7 +62,7 @@ namespace LinkedList
             // insert the new node target it.
             if (temp != null && temp.Data == target)
             {
-                newNode.Next = temp.Next;  // The next node of the new node is the current next node of the "target" node.
+                newNode.Next = temp.Next;  // The next node of the new node is the temp next node of the "target" node.
                 temp.Next = newNode;  // The next node of the "target" node is the new node.
                 len++;
             }
@@ -87,19 +87,19 @@ namespace LinkedList
             // Special case: If the head node is the "target" node, adjust the head and return.
             if (head.Data == target)
             {
-                newNode.Next = head;  // The next node of the new node is the current head.
+                newNode.Next = head;  // The next node of the new node is the temp head.
                 head = newNode;  // The new head is the new node.
                 len++;
                 return;
             }
 
-            // Iterate through the linked list while the current node isn't null and doesn't match the "target" value.
+            // Iterate through the linked list while the temp node isn't null and doesn't match the "target" value.
             Node cur = head;
             Node prev = null;
             while (cur != null && 
                 cur.Data != target)
             {
-                prev = cur;  // Save the current node as the previous node.
+                prev = cur;  // Save the temp node as the previous node.
                 cur = cur.Next;  // Move to the next node.
             }
 
@@ -134,7 +134,7 @@ namespace LinkedList
             {
                 // If the list is not empty, we insert the new node at the beginning.
 
-                // We make the new node's 'Next' reference point to the current head of the list.
+                // We make the new node's 'Next' reference point to the temp head of the list.
                 newNode.Next = head;
 
                 // We then update the head of the list to be the new node.
@@ -179,7 +179,7 @@ namespace LinkedList
 
             // If the position is neither the beginning nor the end, it means we need to insert somewhere in the middle.
 
-            // We initialize a counter to keep track of the current position.
+            // We initialize a counter to keep track of the temp position.
             int counter = 1;
 
             // We initialize 'temp' to the head of the list and will move it forward until we reach the desired position.
@@ -237,7 +237,7 @@ namespace LinkedList
             int data = head.Data;
 
             // Updating the head of the list to be the next node.
-            // This effectively removes the current head node from the list.
+            // This effectively removes the temp head node from the list.
             head = head.Next;
 
             // Decreasing the length of the list by one since we've deleted a node.
@@ -323,7 +323,7 @@ namespace LinkedList
             // We initialize 'temp' to the head of the list and will move it forward until we reach the desired position.
             Node temp = this.head;
 
-            // We initialize a counter to keep track of the current position.
+            // We initialize a counter to keep track of the temp position.
             int counter = 1;
 
             // We move 'temp' forward until we reach the node right before the desired position.
@@ -358,7 +358,7 @@ namespace LinkedList
             if (head.Data == key)
             {
                 // Updating the head of the list to be the next node.
-                // This effectively removes the current head node from the list.
+                // This effectively removes the temp head node from the list.
                 head = head.Next;
 
                 // If the list is now empty after the deletion, we need to update the tail to null.
@@ -443,18 +443,18 @@ namespace LinkedList
             // Initialized to null because at the beginning there's no node before head.
             Node prev = null;
 
-            // 'temp' is a pointer to the current node that we are examining.
+            // 'temp' is a pointer to the temp node that we are examining.
             // We start from the head of the linked list.
             Node temp = this.head;
 
             // We loop through each node in the linked list.
             while (temp != null)
             {
-                // If the HashSet already contains the value of the current node,
+                // If the HashSet already contains the value of the temp node,
                 // it means we've seen this value before and this is a duplicate node.
                 if (set.Contains(temp.Data))
                 {
-                    // We update 'prev's next pointer to skip the current node,
+                    // We update 'prev's next pointer to skip the temp node,
                     // effectively removing it from the linked list.
                     prev.Next = temp.Next;
 
@@ -473,7 +473,7 @@ namespace LinkedList
                 }
                 else
                 {
-                    // If the HashSet does not contain the value of the current node,
+                    // If the HashSet does not contain the value of the temp node,
                     // it means this is the first time we've encountered this value.
                     // So, we add this value to the HashSet.
                     set.Add(temp.Data);
@@ -485,12 +485,66 @@ namespace LinkedList
             }
         }
 
-        private bool predicate(int data)
+        private bool condition(int data)
         {
             return data % 2 == 0;
         }
-     
 
+        public void DeleteByCondition(Func<int, bool> condition)
+        {
+            // Check if the list is empty.
+            // If it is, there are no nodes to delete so we return immediately.
+            if (head == null)
+            {
+                return;
+            }
+
+            // Special case: handle deletion of the head node(s).
+            // If the data of the head node satisfies the condition (specified by the predicate function), delete the head node.
+            while (head != null && condition(head.Data))
+            {
+                // Update the head to the next node, effectively removing the temp head node from the list.
+                head = head.Next;
+
+                // Decrease the length of the list since we've deleted a node.
+                len--;
+
+                // If the list becomes empty after the deletion (i.e., if all nodes were deleted), update the tail to null and return.
+                if (len == 0)
+                {
+                    tail = null;
+                    return;
+                }
+            }
+
+            // Handle deletion of the non-head nodes.
+
+            // Start iterating over the nodes from the (possibly new) head node.
+            Node temp = head;
+            while (temp.Next != null)
+            {
+                // If the data of the next node satisfies the condition, delete the next node.
+                if (condition(temp.Next.Data))
+                {
+                    // Update 'temp's next pointer to skip the next node, effectively removing it from the list.
+                    temp.Next = temp.Next.Next;
+
+                    // Decrease the length of the list since we've deleted a node.
+                    len--;
+
+                    // If we've deleted the last node in the list (i.e., if 'temp's next pointer is now null), update the tail to be 'temp'.
+                    if (temp.Next == null)
+                    {
+                        tail = temp;
+                    }
+                }
+                else
+                {
+                    // If the next node shouldn't be deleted, just move on to the next node.
+                    temp = temp.Next;
+                }
+            }
+        }
         public bool isEmpty()
         { return this.head == null; }
         public void print()

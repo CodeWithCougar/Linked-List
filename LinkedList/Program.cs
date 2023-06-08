@@ -14,16 +14,28 @@ namespace LinkedList
             list.insertAtEnd(100);
             list.insertAtEnd(100);
             list.insertAtEnd(100);
+            list.insertAtEnd(-1);
             list.insertAtEnd(1);
             list.insertAtEnd(2);
             list.insertAtEnd(3);
             list.insertAtEnd(4);
             list.insertAtEnd(5);
+            list.insertAtEnd(-5);
             list.insertAtEnd(6);
+            list.insertAtEnd(-6);
             list.insertAtPos(333, 3);
 
-            list.deleteDuplicates();
-            //list.DeleteByCondition();
+            //list.deleteDuplicates();
+
+            bool filterEvens(int data)
+            {
+                return data % 2 == 0;
+            }
+            bool filterOdds(int data)
+            {
+                return data % 2 != 0;
+            }
+            list.DeleteByCondition((data) => data > 0);
 
 
             list.print();
